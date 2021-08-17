@@ -17,9 +17,9 @@ RUN ls
 #COPY ./target/Iwas_Web_Service.jar app.jar
 #ADD ./target/Iwas_Web_Service.jar /developments/
 
-EXPOSE 9080
+EXPOSE 9071
 #ENTRYPOINT ["java","-jar","/target/Iwas_Web_Service.jar"]
-ENTRYPOINT ["java","-jar","Iwas_Web_Service.jar"]
+ENTRYPOINT ["java","-jar","Ngx_Web_Service.jar"]
 
 #Run Command
 #docker build --tag=iwas-accounts-spring:latest
