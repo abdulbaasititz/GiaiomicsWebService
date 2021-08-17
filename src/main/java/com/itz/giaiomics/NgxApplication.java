@@ -16,12 +16,12 @@ import java.util.Map;
 import java.util.TimeZone;
 
 @SpringBootApplication
-public class IwasApplication {
+public class NgxApplication {
     @Value("${spring.date.time.zone}")
     private String timeZone;
 
     public static void main(String[] args) {
-        SpringApplication.run(IwasApplication.class, args);
+        SpringApplication.run(NgxApplication.class, args);
     }
 
     @PostConstruct
