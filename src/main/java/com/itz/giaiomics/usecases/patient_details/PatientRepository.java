@@ -11,12 +11,12 @@ import java.util.List;
 @Repository
 public interface PatientRepository extends JpaRepository<PatientDetails, Integer> {
 
-    @Query(value = "Select * from PatientDetails where patientId = ?1",nativeQuery = true)
+    @Query(value = "Select * from PatientDetails where PatientId = ?1",nativeQuery = true)
     PatientDetails findByPatientId(String patientId);
 
-    @Query(value = "select * from PatientDetails where patientId = ?1 And  isActive = ?2 ", nativeQuery = true)
+    @Query(value = "select * from PatientDetails where PatientId = ?1 And  IsActive = ?2 ", nativeQuery = true)
     PatientDetails findByPatientIdAndIsActive(String patientId, int i);
 
-    @Query(value = "select * from PatientDetails where isActive = 1 ", nativeQuery = true)
+    @Query(value = "select * from PatientDetails where IsActive = 1 ", nativeQuery = true)
     List<PatientDetails> findAllPatient();
 }
