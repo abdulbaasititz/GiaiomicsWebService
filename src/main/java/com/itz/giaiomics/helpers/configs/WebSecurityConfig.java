@@ -2,7 +2,7 @@ package com.itz.giaiomics.helpers.configs;
 
 import com.itz.giaiomics.helpers.filters.JwtRequestFilter;
 import com.itz.giaiomics.usecases.auth.AuthService;
-import org.jetbrains.annotations.NotNull;
+import com.sun.istack.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
