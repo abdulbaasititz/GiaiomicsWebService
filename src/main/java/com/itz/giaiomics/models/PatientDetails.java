@@ -14,42 +14,42 @@ import java.util.Date;
 public class PatientDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(name="id")
+    @Column(name="Id")
     private int id;
-    @Column(name="patientId")
+    @Column(name="PatientId")
     private String patientId;
-    @Column(name="entryDate")
+    @Column(name="EntryDate")
     private Date entryDate;
-    @Column(name="firstName")
+    @Column(name="FirstName")
     private String firstName;
     @Column(name="LastName")
     private String LastName;
-    @Column(name="dateOfBirth")
+    @Column(name="DateOfBirth")
     private Date dateOfBirth;
-    @Column(name="gender")
+    @Column(name="Gender")
     private String gender;
-    @Column(name="sampleId")
+    @Column(name="SampleId")
     private String sampleId;
-    @Column(name="reportId")
+    @Column(name="ReportId")
     private String reportId;
-    @Column(name="orderNo")
+    @Column(name="OrderNo")
     private String orderNo;
-    @Column(name="orderReceived")
+    @Column(name="OrderReceived")
     private String orderReceived;
-    @Column(name="sampleType")
+    @Column(name="SampleType")
     private String sampleType;
-    @Column(name="sampleCollectionDate")
+    @Column(name="SampleCollectionDate")
     private Date sampleCollectionDate;
-    @Column(name="reportDate")
+    @Column(name="ReportDate")
     private Date reportDate;
-    @Column(name="isActive")
+    @Column(name="IsActive")
     private int isActive;
-    @Column(name="crAt")
+    @Column(name="CrAt")
     private String crAt;
-    @Column(name="crBy")
+    @Column(name="CrBy")
     private String crBy;
-    @Column(name="upAt")
+    @Column(name="UpAt")
     private String upAt;
-    @Column(name="upBy")
+    @Column(name="UpBy")
     private String upBy;
 }
