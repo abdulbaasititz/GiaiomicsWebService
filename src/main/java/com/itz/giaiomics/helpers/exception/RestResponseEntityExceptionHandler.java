@@ -2,8 +2,8 @@ package com.itz.giaiomics.helpers.exception;
 
 import com.itz.giaiomics.helpers.common.calc.DateTimeCalc;
 import com.itz.giaiomics.helpers.exception.custom.ResourceNotFoundException;
+import com.sun.istack.NotNull;
 import org.hibernate.exception.ConstraintViolationException;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.InvalidDataAccessApiUsageException;

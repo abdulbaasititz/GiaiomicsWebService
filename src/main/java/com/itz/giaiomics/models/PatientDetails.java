@@ -10,8 +10,8 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "CreatePatient")
-public class CreatePatient {
+@Table(name = "PatientDetails")
+public class PatientDetails {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="id")
@@ -39,11 +39,11 @@ public class CreatePatient {
     @Column(name="sampleType")
     private String sampleType;
     @Column(name="sampleCollectionDate")
-    private String sampleCollectionDate;
+    private Date sampleCollectionDate;
     @Column(name="reportDate")
     private Date reportDate;
     @Column(name="isActive")
-    private String isActive;
+    private int isActive;
     @Column(name="crAt")
     private String crAt;
     @Column(name="crBy")

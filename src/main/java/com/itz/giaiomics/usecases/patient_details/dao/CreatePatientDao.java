@@ -1,4 +1,4 @@
-package com.itz.giaiomics.usecases.create_patient.dao;
+package com.itz.giaiomics.usecases.patient_details.dao;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +19,7 @@ public class CreatePatientDao {
     private String orderNo;
     private String orderReceived;
     private String sampleType;
-    private String sampleCollectionDate;
+    private Date sampleCollectionDate;
     private Date reportDate;
+    private int isActive;
 }
