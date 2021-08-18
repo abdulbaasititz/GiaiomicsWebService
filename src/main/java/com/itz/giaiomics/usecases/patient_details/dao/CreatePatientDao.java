@@ -1,5 +1,6 @@
 package com.itz.giaiomics.usecases.patient_details.dao;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,8 +8,10 @@ import java.util.Date;
 
 @Getter
 @Setter
+
 public class CreatePatientDao {
     private String patientId;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date entryDate;
     private String firstName;
     private String lastName;
@@ -21,5 +24,4 @@ public class CreatePatientDao {
     private String sampleType;
     private Date sampleCollectionDate;
     private Date reportDate;
-    private int isActive;
 }
