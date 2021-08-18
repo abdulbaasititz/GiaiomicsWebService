@@ -29,7 +29,7 @@ public class ClaimsSet {
         Map<String, Object> claims = new HashMap<>();
         claims.put("rol", userDao.getDesignation());
         claims.put("eid", userDao.getUserName());
-        claims.put("unt", userDao.getBaseCurrency());
+        //claims.put("unt", userDao.getBaseCurrency());
         return claims;
     }
 

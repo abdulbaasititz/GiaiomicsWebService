@@ -5,6 +5,7 @@ import com.itz.giaiomics.helpers.common.calc.DateTimeCalc;
 import com.itz.giaiomics.models.NgxAncestry;
 import com.itz.giaiomics.models.PatientDetails;
 import com.itz.giaiomics.usecases.patient_details.dao.CreatePatientDao;
+import com.itz.giaiomics.usecases.patient_details.pojo.PatientPojo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,11 +50,12 @@ public class PatientService {
         return createPatient == null;
     }
 
-    public String createPatients(CreatePatientDao createPatientDao) {
+    public String createPatients(CreatePatientDao createPatientDao,String user) {
             Boolean checkPatientId = checkPatientNumber(createPatientDao.getPatientId());
             if (checkPatientId) {
                 PatientDetails createPatient = new PatientDetails();
                 createPatient.setId(0);
+                createPatient.setIsActive(1);
                 createPatient.setPatientId(createPatientDao.getPatientId());
                 createPatient.setEntryDate(createPatientDao.getEntryDate());
                 createPatient.setFirstName(createPatientDao.getFirstName());
@@ -67,7 +69,7 @@ public class PatientService {
                 createPatient.setSampleType(createPatientDao.getSampleType());
                 createPatient.setSampleCollectionDate(createPatientDao.getSampleCollectionDate());
                 createPatient.setReportDate(createPatientDao.getReportDate());
-                createPatient.setIsActive(createPatientDao.getIsActive());
+                createPatient.setCrBy(user);
                 patientRepository.save(createPatient);
                 return "PATIENT CREATED SUCCESSFULLY";
             } else {
@@ -75,8 +77,8 @@ public class PatientService {
             }
         }
 
-    public List<PatientDetails> getAllPatientDetails() throws Exception {
-        List<PatientDetails> patientDetails;
+    public  List<PatientPojo>  getAllPatientDetails() throws Exception {
+        List<PatientPojo>  patientDetails;
         try {
             patientDetails = patientRepository.findAllPatient();
         }catch (Exception e){
@@ -85,9 +87,10 @@ public class PatientService {
         return patientDetails;
     }
 
-    public String updatePatients(CreatePatientDao createPatientDao) {
+    public String updatePatients(CreatePatientDao createPatientDao,String user) {
         int patientId = getPatientId(createPatientDao.getPatientId());
         if (patientId != 0) {
+            String formattedDate = new DateTimeCalc().getTodayDate();
             PatientDetails createPatient = new PatientDetails();
             createPatient.setId(patientId);
             createPatient.setPatientId(createPatientDao.getPatientId());
@@ -103,7 +106,8 @@ public class PatientService {
             createPatient.setSampleType(createPatientDao.getSampleType());
             createPatient.setSampleCollectionDate(createPatientDao.getSampleCollectionDate());
             createPatient.setReportDate(createPatientDao.getReportDate());
-            createPatient.setIsActive(createPatientDao.getIsActive());
+            createPatient.setUpAt(user);
+            createPatient.setUpAt(formattedDate);
             patientRepository.save(createPatient);
             return "PATIENT UPDATED SUCCESSFULLY";
         } else {
@@ -121,17 +125,23 @@ public class PatientService {
 
     }
 
-    public String removePatient(String patientId) {
+    public String removePatient(String patientId,String user) {
         PatientDetails patientDetails = patientRepository.findByPatientIdAndIsActive(patientId, 1);
         if (patientDetails != null) {
             String formattedDate = new DateTimeCalc().getTodayDate();
             patientDetails.setIsActive(0);
             patientDetails.setUpAt(formattedDate);
+            patientDetails.setUpBy(user);
             patientRepository.save(patientDetails);
             return "PATIENT "+patientId+" UPDATED AS INACTIVE";
         } else {
             return "NO PATIENT FOUND AT "+patientId;
         }
+    }
+
+    public PatientPojo getPatientDetail(String patientId) {
+        return patientRepository.findByPatient(patientId);
+
     }
 }
 

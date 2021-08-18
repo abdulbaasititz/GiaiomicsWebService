@@ -2,6 +2,8 @@ package com.itz.giaiomics.usecases.patient_details;
 
 
 import com.itz.giaiomics.models.PatientDetails;
+import com.itz.giaiomics.usecases.patient_details.dao.CreatePatientDao;
+import com.itz.giaiomics.usecases.patient_details.pojo.PatientPojo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -18,5 +20,8 @@ public interface PatientRepository extends JpaRepository<PatientDetails, Integer
     PatientDetails findByPatientIdAndIsActive(String patientId, int i);
 
     @Query(value = "select * from PatientDetails where IsActive = 1 ", nativeQuery = true)
-    List<PatientDetails> findAllPatient();
+    List<PatientPojo> findAllPatient();
+
+    @Query(value = "Select * from PatientDetails where PatientId = ?1",nativeQuery = true)
+    PatientPojo findByPatient(String patientId);
 }
