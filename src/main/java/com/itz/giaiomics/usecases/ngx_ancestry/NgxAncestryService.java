@@ -21,4 +21,11 @@ public class NgxAncestryService {
         }
         return ngxAncestries;
     }
+
+
+    public List<NgxAncestry> getAllData() {
+        List<NgxAncestry> pgxAncestry = ngxAncestryRepository.findAll();
+
+        return pgxAncestry;
+    }
 }
