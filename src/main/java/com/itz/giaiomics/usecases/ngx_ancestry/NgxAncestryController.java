@@ -1,6 +1,7 @@
 package com.itz.giaiomics.usecases.ngx_ancestry;
 
 
+import com.itz.giaiomics.helpers.configs.LoggerConfig;
 import com.itz.giaiomics.models.NgxAncestry;
 import com.itz.giaiomics.usecases.ngx_ancestry.dao.NgxResult;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +36,18 @@ public class NgxAncestryController {
     }
 
     @PostMapping("/ngx-upload") // //new annotation since 4.3
-    public ResponseEntity<?> ngxFileUpload(@RequestParam(value = "file") MultipartFile file) throws Exception {
+    public ResponseEntity<?> ngxFileUpload(@RequestParam String patientId,@RequestParam String clientId,@RequestParam(value = "file") MultipartFile file) throws Exception {
         List<NgxAncestry> ngxAncestries = ngxAncestryService.getAllData();
         List<NgxResult> ngxResults = new ArrayList<>();
+
+        String userDirectory = Paths.get("").toAbsolutePath().toString();
+
+        System.out.println("pathName out = " + userDirectory);
+
         try {
             // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
-            String fileName = UPLOADED_FOLDER + file.getOriginalFilename();
+            String fileName = userDirectory +"//"+ file.getOriginalFilename();
             Path path = Paths.get(fileName);
             Files.write(path, bytes);
             BufferedReader br = new BufferedReader(new FileReader(fileName));
